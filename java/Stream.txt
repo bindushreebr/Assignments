@@ -1,0 +1,360 @@
+1.
+
+import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
+
+class fruit{
+	String name;
+	int calories;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getCalories() {
+		return calories;
+	}
+
+	public void setCalories(int calories) {
+		this.calories = calories;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	int price;
+	String color;
+	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public fruit(String name, int calories, int price, String color) {
+		this.name = name;
+		this.calories = calories;
+		this.price = price;
+		this.color = color;
+	}
+	
+}
+public class FruitEX {
+
+	public static void main(String[] args) {
+		
+		List<fruit> l1= new ArrayList<fruit>();
+		
+		l1.add(new fruit("bananna",110, 60, "yellow"));
+		l1.add(new fruit("apple",90, 80, "red"));
+		l1.add(new fruit("mango",150, 90, "red"));
+		l1.add(new fruit("grapes",80, 60, "green"));
+		l1.add(new fruit("pineapple",130, 100, "yellow"));
+		
+		System.out.println("fruit names with < 100 calories");
+		l1.stream().filter(n->n.calories<100).forEach(pr->System.out.println(pr.name+"  "+pr.calories));
+		System.out.println("displaying red color fruits");
+		l1.stream().filter(n->n.color == "red").forEach(pr->System.out.println(pr.name+" "+pr.color));
+		System.out.println("sorted based on price in ascending order");
+        l1.stream().sorted((p1,p2) -> p1.getPrice() - p2.getPrice()).forEach(pr->System.out.println(pr.getPrice()+" "+pr.getName()));
+       System.out.println("Display color wise fruit name");
+       l1.stream().sorted((p1,p2) -> p1.getColor().compareTo(p2.getColor())).forEach(pr->System.out.println(pr.getColor()+"  "+pr.getName()));
+	}
+
+}
+
+
+
+output:
+fruit names with < 100 calories
+apple  90
+grapes  80
+
+displaying red color fruits
+apple red
+mango red
+
+sorted based on price in ascending order
+60 bananna
+60 grapes
+80 apple
+90 mango
+100 pineapple
+
+Display color wise fruit name
+green  grapes
+red  apple
+red  mango
+yellow  bananna
+yellow  pineapple
+
+
+2.
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+class trader{
+	String name;
+	String city;
+	
+	
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public trader(String name, String city) {
+		this.name = name;
+		this.city = city;
+	}
+	
+	
+}
+public class traders {
+
+	public static void main(String[] args) {
+		
+		 List<trader> l1= new ArrayList<trader>();
+		 
+		 l1.add(new trader("bindu","bangalore"));
+		 l1.add(new trader("ritambara", "kolkata"));
+		 l1.add(new trader("tejaswini", "telangana"));
+		 l1.add(new trader("lahari", "pune"));
+		 l1.add(new trader("anusha","pune"));
+		 
+		 System.out.println("Unique cities where trader works"); 
+		 l1.stream().map(n -> n.getCity()).distinct().forEach(System.out::println); 
+		 
+		 System.out.println("finding all traders from pune and sort them by name"); 
+		 l1.stream().filter(n->n.getCity()=="pune").map(s->s.getName()).forEach(System.out::println);
+		 
+	     System.out.println(" return a string of all trader names sorted alphabetically"); 
+	     l1.stream().map(n->n.getName()).sorted().forEach(System.out::println);
+
+	}
+
+}
+
+
+output:
+
+Unique cities where trader works
+bangalore
+kolkata
+telangana
+pune
+finding all traders from pune and sort them by name
+lahari
+anusha
+ return a string of all trader names sorted alphabetically
+anusha
+bindu
+lahari
+ritambara
+tejaswini
+
+
+3.class transaction{
+	String name;
+	String city;
+	int year;
+	int value;
+	
+	public transaction(String name, String city, int year, int value) {
+		super();
+		this.name = name;
+		this.city = city;
+		this.year = year;
+		this.value = value;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public int getValue() {
+		return value;
+	}
+	public void setValue(int value) {
+		this.value = value;
+	}
+		
+
+	@Override
+	public String toString() {
+		return "transaction [name=" + name + ", city=" + city + ", year=" + year + ", value=" + value + "]";
+	}
+		
+		
+}
+	
+
+public class classwithinclass {
+
+	public static void main(String[] args) {
+		
+		List<transaction> m1=new ArrayList<transaction>();
+		
+		m1.add(new transaction("bindu","bangalore", 2011,250));
+		m1.add(new transaction("ritambara", "kolkata", 2018,1200));
+		m1.add(new transaction("tejaswini", "telangana", 2011,950));
+		m1.add(new transaction("lahari", "delhi", 1999,450));
+		m1.add(new transaction("anusha","delhi", 2011,350));
+		
+		System.out.println("printing all the transcation value living in delhi");
+		
+		m1.stream().filter(n->n.getCity().contains("delhi"))
+		.forEach(pr->System.out.println(pr.getName()+" "+pr.getValue()+" "+pr.getYear()));
+		
+		System.out.println("highest value of all transcation");
+		
+		Optional<Integer> max=m1.stream().map(n->n.getValue()).max((v1,v2) -> v1.compareTo(v2));
+		System.out.println(max.get());
+		
+        System.out.println("smallest value of all transcation");
+		
+		Optional<Integer> min=m1.stream().map(n->n.getValue()).min((v1,v2) -> v1.compareTo(v2));
+		System.out.println(min.get());
+		
+		System.out.println("transaction in 2011 and sort by value small to large");
+		m1.stream().filter(n->n.getYear()==(2011)).sorted((p1,p2) -> p1.getValue()-p2.getValue()).forEach(p-> System.out.println(p.getName()+" "+p.getValue()));
+
+	}
+
+}
+
+output:
+printing all the transcation value living in delhi
+lahari 450 1999
+anusha 350 2011
+highest value of all transcation
+1200
+smallest value of all transcation
+250
+transaction in 2011 and sort by value small to large
+bindu 250
+anusha 350
+tejaswini 950
+
+
+4.
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+
+class news{
+	int newsid;
+	String postedbyuser;
+	String commentbyuser;
+	String comment;
+	
+	public int getNewsid() {
+		return newsid;
+	}
+
+	public void setNewsid(int newsid) {
+		this.newsid = newsid;
+	}
+
+	public String getPostedbyuser() {
+		return postedbyuser;
+	}
+
+	public void setPostedbyuser(String postedbyuser) {
+		this.postedbyuser = postedbyuser;
+	}
+
+	public String getCommentbyuser() {
+		return commentbyuser;
+	}
+
+	public void setCommentbyuser(String commentbyuser) {
+		this.commentbyuser = commentbyuser;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	
+	public news(int newsid, String postedbyuser, String commentbyuser, String comment) {
+		this.newsid = newsid;
+		this.postedbyuser = postedbyuser;
+		this.commentbyuser = commentbyuser;
+		this.comment = comment;
+	}
+	
+}
+public class newsac {
+
+	public static void main(String[] args) {
+		
+       List<news> l1= new ArrayList<news>();
+		
+		l1.add(new news(101,"bindu","sindu","verylow buget"));
+		l1.add(new news(102,"sindu","thanush","comment is low"));
+		l1.add(new news(103,"lahari","ganesh","please find the buget information"));
+		l1.add(new news(104,"anusha","vinay","no comments,only likes"));
+		
+		System.out.println("counting the world buget in comment");
+		long count=l1.stream().filter(s->s.comment.contains("buget")).count();
+		System.out.println(count);
+	
+
+	}
+
+}
+
+output:
+
+counting the world buget in comment
+2
+

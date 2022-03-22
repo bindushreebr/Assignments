@@ -1,0 +1,266 @@
+1. HashSet 
+
+
+package Generics;
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+class employee{
+	int id;
+	String name;
+	double salary;
+	String department;
+	
+	public employee(int id, String name, double salary, String department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+		this.department = department;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+		
+	@Override
+	public String toString() {
+		return "employee [id=" + id + ", name=" + name + ", salary=" + salary + ", department=" + department + "]";
+	}
+	
+}
+
+
+public class Hashset_main {
+
+	public static void main(String[] args) {
+	
+		HashSet<employee> set= new HashSet<employee>();
+		
+		//creating employee details
+		employee e1=new employee(101,"bindu",25000,"java_developer");
+		employee e2=new employee(102,"sindu",26500,"Full_Stack_developer");
+		employee e3=new employee(103,"anusha",20000,"cybersecurity");
+		
+		//adding employee to HashSet
+		set.add(e1);
+		set.add(e2);
+		set.add(e3);
+		
+		//System.out.println(set);
+		
+		//iterating
+		
+	    Iterator<employee> itr=set.iterator();
+		while(itr.hasNext()) {
+		employee data=itr.next();
+		System.out.println(data);
+		
+		}
+		
+
+	}
+
+}
+
+
+
+output:
+
+employee [id=102, name=sindu, salary=26500.0, department=Full_Stack_developer]
+employee [id=103, name=anusha, salary=20000.0, department=cybersecurity]
+employee [id=101, name=bindu, salary=25000.0, department=java_developer]
+
+
+2.HashMap
+
+package Generics;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class hashmap {
+	public static void main(String[] args) {
+		
+		Map<Integer,Double> map=new HashMap<Integer,Double>();
+		
+		//adding key and value to HashMAP
+		map.put(1,2500.00);
+		map.put(2,3500.00);
+		map.put(3,34566.00);
+		map.put(4,5429.0);
+		map.put(5,76432.0);
+		map.put(11,9500.00);
+		map.put(12,12500.00);
+		map.put(13,90000.00);
+		map.put(14,55559.0);
+		map.put(15,78432.0);
+		
+		//using ForEach loop to iterate key and value
+		
+		for(Map.Entry<Integer,Double> e: map.entrySet())
+			System.out.println("Key:"+e.getKey()+"    "+"Value:"+e.getValue());
+		
+		
+	}
+
+}
+
+
+output:
+
+Key:1    Value:2500.0
+Key:2    Value:3500.0
+Key:3    Value:34566.0
+Key:4    Value:5429.0
+Key:5    Value:76432.0
+Key:11    Value:9500.0
+Key:12    Value:12500.0
+Key:13    Value:90000.0
+Key:14    Value:55559.0
+Key:15    Value:78432.0
+
+
+3. Generics SWapping two values in a array elements
+
+
+
+package Generics;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class GEneric_array_swap {
+
+public static final<T> void swap(T[] list, int i, int j) {
+		
+		T t=list[i];
+		list[i]=list[j];
+		list[j]=t;
+		
+	}
+
+public static final<T> void swap(List<T> l, int i, int j) {
+	Collections.<T>swap(l,i,j);
+}
+
+	public static void main(String[] args) {
+		String[] list= {"1","2","3","4","5"};
+		
+		//Swapping the integer array
+		System.out.println("Before Swapping:"+Arrays.toString(list));
+		swap(list,0,3);
+		System.out.println("After Swapping"+Arrays.toString(list));
+
+	}
+
+}
+
+
+output:
+
+
+Before Swapping:[1, 2, 3, 4, 5]
+After Swapping[4, 2, 3, 1, 5]
+
+
+4a
+
+
+
+package Generics;
+
+class generic_class<k,v> {
+	private k key;
+	private v value;
+	
+	
+	public generic_class(k key, v value) {
+		super();
+		this.key = key;
+		this.value = value;
+	}
+	
+	public k getKey() {
+		return key;
+	}
+
+	public void setKey(k key) {
+		this.key = key;
+	}
+
+	public v getValue() {
+		return value;
+	}
+
+	public void setValue(v value) {
+		this.value = value;
+	}
+
+}
+
+
+package Generics;
+
+public class pair {
+
+	public static void main(String[] args) {
+		
+		generic_class<String,String> myObj=new generic_class<String,String>("2","world");
+		
+		myObj.setKey("1");
+		myObj.setValue("Hello");
+		
+		System.out.println(myObj.getKey()+"     "+myObj.getValue());
+
+
+
+
+
+
+		generic_class<String,java.util.Date> myObj1=new generic_class<String,java.util.Date>(null, null);
+		
+		myObj1.setKey("Today is");
+		myObj1.setValue(new java.util.Date());
+		
+		System.out.println(myObj1.getKey()+"-------"+myObj1.getValue());
+	}
+
+}
+
+
+output:
+
+1     Hello
+
+Today is-------Mon Jan 17 12:32:48 IST 2022

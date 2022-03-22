@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            const variable = new Object();
+            variable.firstName = "bindu";
+            variable.lastName = "shree";
+            //print the properties
+            document.write(variable.firstName);
+            document.write(variable.lastName);
+            //change properties
+            variable.lastName = "bindu shree"
+            //print properties again
+            document.write("<br>"+variable.firstName);
+            document.write(variable.lastName);
+
+            //reading middle name
+            document.write("<br><br>Before Assigning middle name: "+variable.middleName);
+            //assigning middle name
+            variable.middleName = " sri";
+            //reading again after assigning
+            document.write("<br>After Assigning middle name: "+variable.middleName);
+        </script>
+    </body>
+</html>

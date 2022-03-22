@@ -1,0 +1,431 @@
+1.
+
+
+public class basic_arithmetic {
+
+	public static void main(String[] args) {
+
+		    System.out.println("Adding");
+			Myadd addFunction=(int a,int b)->{
+				return a+b;
+				
+			};	
+			System.out.println(addFunction.add(10, 2));
+			
+			 System.out.println("subtracting");
+			Myadd subFunction=(int a,int b)->{
+				return a-b;
+				
+			};	
+			System.out.println(subFunction.add(10, 2));
+			
+			 System.out.println("Multiplication");
+			Myadd mulFunction=(int a,int b)->{
+				return a*b;
+				
+			};	
+			System.out.println(mulFunction.add(10, 2));
+			
+			 System.out.println("Divide");
+			Myadd divFunction=(int a,int b)->{
+				return a/b;
+				
+			};	
+			System.out.println(divFunction.add(10, 2));
+
+	}
+	interface Myadd{
+		int add(int x,int y);
+	}
+
+}
+
+
+output:
+
+Adding
+12
+subtracting
+8
+Multiplication
+20
+Divide
+5
+
+
+2.
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.*;
+import java.util.stream.Stream;
+
+class orders{
+	int orderId;
+	Double cost;
+	String orderStatus;
+	
+	public orders(int orderId, Double cost, String orderStatus) {
+		this.orderId = orderId;
+		this.cost = cost;
+		this.orderStatus = orderStatus;
+	}
+	public int getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+	public Double getCost() {
+		return cost;
+	}
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+	public String getOrderStatus() {
+		return orderStatus;	
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+@Override
+public String toString() {
+	return "orders [orderId=" + orderId + ", cost=" + cost + ", orderStatus=" + orderStatus + "]";
+}
+}
+
+public class order {
+
+	public static void main(String[] args) {
+		
+		List<orders> list=new ArrayList<orders>();
+		
+		list.add(new orders(1,2500.0,"Accepted"));
+		list.add(new orders(2,10000.0,"Completed"));
+		list.add(new orders(3,15000.0,"Accepted"));
+		list.add(new orders(4,9500.0,"Completed"));
+		
+		//printing all the order price more than 10000 and printing it's status
+	
+		Predicate<orders> p=o -> o.getCost() >= 10000;
+		for(orders or:list) {
+			if(p.test(or)) {
+				System.out.println(or.getCost()+"   "+or.getOrderStatus());
+			}
+		}
+
+		
+		 Stream<orders> filtered_data = list.stream().filter(o -> o.cost >= 10000);  
+		
+		 filtered_data.forEach(  
+	                orders -> System.out.println(orders.cost+": "+orders.orderStatus)  
+	        );  
+		 
+	}
+
+}
+
+output:
+10000.0   Completed
+15000.0   Accepted
+10000.0: Completed
+15000.0: Accepted
+
+3.
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+class employee{
+	String ename;
+	int salary;
+	String gender;
+	
+	public employee(String ename, int salary, String gender) {
+		this.ename = ename;
+		this.salary = salary;
+		this.gender = gender;
+	}
+}
+
+public class predefined_function {
+
+	public static void main(String[] args) {
+		
+		List<employee> list= new ArrayList<employee>();
+		
+		list.add(new employee("Ravi",30000,"male"));
+		list.add(new employee("lahari",25000, "female"));
+		list.add(new employee("shreyan",32000,"male"));
+		list.add(new employee("bindu",23000,"female"));
+		list.add(new employee("thanush",40000, "male"));
+	
+		// calculating the bonus based on salary
+		
+		Function<employee,Integer> fn= e -> {
+			int sal=e.salary;
+			if(sal>=20000 && sal<=30000) 
+				return (sal*10/100);
+			else 
+				return (sal*20/100);					
+		};
+		
+		for(employee emp:list) {
+			int Bonus=fn.apply(emp);
+			System.out.println(emp.ename+"  "+emp.salary+"  "+emp.gender+"  "+"Bonus amount is:"+Bonus);
+			//System.out.println("Bonus amount is:"+Bonus);
+		}
+		
+		System.out.println("--------------------------------------");
+		
+		// let display the employee details having bonus amount > 5000
+		Predicate<Integer> p=b->b>5000;
+		
+		for(employee emp:list) {
+			int Bonus=fn.apply(emp);
+			if(p.test(Bonus))
+			System.out.println(emp.ename+"  "+emp.salary+"  "+emp.gender+"  "+"Bonus amount is:"+Bonus);
+			
+		}
+		
+		System.out.println("--------------------------------------");
+		
+		//displaying all the employee details
+		Consumer<employee> c=e ->{
+			System.out.println(e.ename+"  "+e.salary+"  "+e.gender);
+		};
+		
+		for(employee emp:list) {
+			int Bonus=fn.apply(emp);
+			if(p.test(Bonus)) {
+				c.accept(emp);
+				System.out.println("Bonus amount is:"+Bonus);
+			}
+			
+			
+			
+		}
+		
+		
+	}
+
+}
+
+
+
+output:
+
+Ravi  30000  male  Bonus amount is:3000
+lahari  25000  female  Bonus amount is:2500
+shreyan  32000  male  Bonus amount is:6400
+bindu  23000  female  Bonus amount is:2300
+thanush  40000  male  Bonus amount is:8000
+--------------------------------------
+shreyan  32000  male  Bonus amount is:6400
+thanush  40000  male  Bonus amount is:8000
+--------------------------------------
+shreyan  32000  male
+Bonus amount is:6400
+thanush  40000  male
+Bonus amount is:8000
+
+4.
+import java.util.*;
+import java.util.function.Predicate;
+
+public class removelambda {
+
+	public static void main(String[] args) {
+		List<String> l1=new ArrayList<String>();
+		
+		l1.add("bindu");
+		l1.add("lahari");
+		l1.add("shashi");
+		l1.add("cat");
+		l1.add("dogs");
+        
+		 //removes all the elements which satisfies the predicate filter  
+		Predicate<String> pr= a->(a.length()% 2!=0); 
+		
+		 //remove all the elements which do not come in 2's table  
+        l1.removeIf(pr );  
+        System.out.println(l1);  
+         
+
+	}
+
+}
+
+output:
+[lahari, shashi, dogs]
+
+
+5.
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
+public class firstlettersinlist {
+
+	public static void main(String[] args) {
+   
+		List<String> l1=new ArrayList<String>();
+		
+		l1.add("Bindu");
+		l1.add("lahari");
+		l1.add("Shashi");
+		l1.add("Cat");
+		l1.add("Dogs");
+		
+		Consumer <String> print=(str)->System.out.println("The first letter of strings:"+str.charAt(0));
+		l1.forEach(print);
+
+
+	}
+
+}
+
+
+
+output:
+
+The first letter of strings:B
+The first letter of strings:l
+The first letter of strings:S
+The first letter of strings:C
+The first letter of strings:D
+
+
+6.
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.UnaryOperator;
+
+public class ReplaceAll {
+
+	public static void main(String[] args) {
+List<String> l1=new ArrayList<String>();
+		
+		l1.add("Bindu");
+		l1.add("lahari");
+		l1.add("Shashi");
+		l1.add("Cat");
+		l1.add("Dogs");
+		
+		
+	    //replacing all the elements into uppercase
+        l1.replaceAll( e -> e.toUpperCase() ); 
+        System.out.println(l1); 
+        
+        l1.replaceAll(new Operator());  
+        
+        System.out.println(l1);
+        
+        l1.replaceAll(new MyOperator());  
+        
+        System.out.println(l1);
+        
+
+	}
+
+}
+
+class Operator implements UnaryOperator<String> 
+{
+
+	@Override
+	public String apply(String s) {
+		
+		return s.toUpperCase();
+	}
+} 
+	class MyOperator implements UnaryOperator<String> 
+	{
+
+		@Override
+		public String apply(String t) {
+			
+			return t.toLowerCase();
+		}
+}
+
+output:
+
+[BINDU, LAHARI, SHASHI, CAT, DOGS]
+[BINDU, LAHARI, SHASHI, CAT, DOGS]
+[bindu, lahari, shashi, cat, dogs]
+
+
+7.
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
+
+public class map {
+
+	public static void main(String[] args) {
+		Map<String,String> m1=new TreeMap<String,String>();
+		m1.put("Bindu", "shree");
+		m1.put("indu", "shree");
+		m1.put("sindu", "shree");
+		m1.put("anusha", "shetty");
+		m1.put("mamatha", "srinivas");
+		String s = m1.entrySet().stream().map((entry) -> entry.getKey() + " " + entry.getValue()+ " ")
+       .collect(Collectors.joining("    "));
+        System.out.println(s);
+        
+
+	}
+
+}
+
+output:
+
+Bindu shree     anusha shetty     indu shree     mamatha srinivas     sindu shree 
+
+
+
+8.
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class thread {
+
+	public static void main(String[] args) {
+		
+
+List<String> l1=new ArrayList<String>();
+		
+		l1.add("Bindu");
+		l1.add("lahari");
+		l1.add("Shashi");
+		l1.add("Cat");
+		l1.add("Dogs");
+		
+        
+        Thread thread = new Thread(()->System.out.println(l1));
+        thread.run();
+
+	}
+
+}
+
+
+
+
+output:
+
+[Bindu, lahari, Shashi, Cat, Dogs]

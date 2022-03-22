@@ -1,0 +1,188 @@
+1and2
+
+package Exception_handling;
+
+import java.util.Scanner;
+
+public class Arith_handling {
+
+	
+	public static void operation() {
+		throw new UnsupportedOperationException("unsupporteoperation error");
+		
+	}
+	public static void main(String[] args) {
+		int a,b;
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the first number:");
+		a=sc.nextInt();
+		System.out.println("Enter the second number:");
+		b=sc.nextInt();
+		
+		try {
+			System.out.println("Results:"+a/b);
+			
+			operation();
+			
+		}
+		
+        catch(UnsupportedOperationException e) {
+    	 System.out.println("unsupported operation message:"+e.getMessage());
+    	  
+		}
+		
+		catch(ArithmeticException e){
+			System.out.println("Exception message is:"+e.getMessage());
+			//e.printStackTrace();		
+		}
+
+		
+		
+		
+	}
+
+
+output:
+
+Enter the first number:
+65
+Enter the second number:
+0
+Exception message is:/ by zero
+
+
+Enter the first number:
+76
+Enter the second number:
+9
+Results:8
+unsupported operation message:unsupporteoperation error
+
+}
+
+
+
+
+3.
+
+package Exception_handling;
+
+//creating new Exception InsufficientBalance
+
+public class InsufficientBalanceException extends Exception{
+	
+	 public InsufficientBalanceException(String msg) {
+	        super(msg);
+	   }
+
+}
+
+
+
+package Exception_handling;
+
+public class IllegalBankTransactionException extends Exception{
+	
+	 public IllegalBankTransactionException(String msg) {
+	        super(msg);
+	   }
+
+}
+
+
+
+
+package Exception_handling;
+
+public class bank {
+	long id;
+	double balance;
+	double withdraw;
+	double deposite;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	public double getWithdraw() {
+		return withdraw;
+	}
+	public double withdraw(double amount) {
+		return withdraw = withdraw;
+	}
+	public double getDeposite() {
+		return deposite;
+	}
+	public double deposite(double amount) {
+		return deposite = deposite;
+	}
+	
+	public bank(long id, double balance, double withdraw, double deposite) {
+		super();
+		this.id = id;
+		this.balance = balance;
+		this.withdraw = withdraw;
+		this.deposite = deposite;
+	}
+	
+
+}
+
+
+
+package Exception_handling;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		bank obj=new bank(1,2500,30000, 0);
+
+		System.out.println("Balance --------"+obj.getBalance());
+		System.out.println("Withdraw amount -------"+obj.getWithdraw());
+		
+		try {
+			if((obj.getWithdraw() > obj.getBalance())||(obj.getWithdraw() == 0)) 
+			{
+				throw new InsufficientBalanceException("Low balance,check ur balance");
+			}
+			if(obj.getWithdraw() < 0) {
+				throw new IllegalBankTransactionException("Less than zero can not be withdraw");
+			}
+			
+		}
+		catch(InsufficientBalanceException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalBankTransactionException e) {
+			System.out.println(e.getMessage());
+
+		}
+
+	}
+
+}
+
+
+
+output:
+
+
+Balance --------2500.0
+Withdraw amount -------30000.0
+Low balance,check ur balance
+
+Balance --------:2500.0
+Withdraw amount -------:-30000.0
+Less than zero can not be withdraw
+
+Balance --------:2500.0
+Withdraw amount -------:0.0
+Low balance,check ur balance

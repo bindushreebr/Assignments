@@ -1,0 +1,29 @@
+div.first
+{   
+    background-color: rgb(34, 67, 214);
+    padding: 5px;
+}   
+
+div.second
+{   
+    background-color: rgb(206, 202, 202);
+    padding: 10px;
+}   
+
+div.third
+{   
+    background-color: aqua;
+    padding: 10px;
+}  
+
+div.fourth
+{
+    background-color: rgb(206, 202, 202);
+    padding: 10px;
+}
+
+div.fifth
+{
+    background-color: aqua;
+    padding: 15px;
+}

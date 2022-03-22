@@ -1,0 +1,227 @@
+1.simple interset
+
+package java11;
+
+interface simpleinterest{
+	int operation(int a, int b,int c);
+}
+
+
+public class simple {
+	public static void main(String[] args) {
+	
+		simpleinterest rest=(var p,var t,var r) -> ((p*t*r)/100);
+		 int result = rest.operation(500, 2, 3);
+		 System.out.println(result);
+
+	}
+
+}
+
+output:  30
+
+
+2.
+
+Scenario 1: var keyboard cannot be used as an instance and a global variable.
+package org;
+
+class demo {
+	var x = 10;
+	public static void main(String[] args) {
+		
+		System.out.println(x);
+	}
+
+}	
+
+Output: Cannot make a static reference to the non-static field x
+
+Scenario 2: var cannot be used as a generic type
+
+
+import java.util.*;
+class demo{
+
+	public static void main(String[] args) {
+		var<var> v = new ArrayList<>();
+		
+		 
+        v.add(10);
+        v.add(20);
+        v.add(30);
+        
+        
+        System.out.println(v);
+	}
+
+}
+
+Output: error: ‘var’ is not allowed here
+var<var> v = new ArrayList<>();
+1 error
+
+
+		
+
+Scenario 3: var cannot be used without explicit initialization
+
+import java.io.*;
+class demo {
+
+	public static void main(String[] args) {
+		
+        var variable;
+          
+          // This is also not valid
+        var variable = null;
+	}
+
+}
+
+Output: Cannot use 'var' on variable without initializer
+	Duplicate local variable variable
+	Cannot infer type for local variable initialized to 'null'
+
+
+Scenario 4: var cannot be used with lambda expression
+
+interface mycode {
+	int add(int a, int b);
+}
+class demo {
+
+	public static void main(String[] args) {
+		var v = (a,b) -> (a + b);
+		System.out.println(v.add(2,3));
+	}
+
+}
+
+Output: Lambda expression needs an explicit target-type
+	Cannot invoke add(int, int) on the primitive type null
+
+
+3.
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ArrayListToArray {
+
+	public static void main(String[] args) {
+	
+		List<String> list=new ArrayList<String>();
+		list.add("A");
+		list.add("quick");
+		list.add("brown");
+		list.add("fox");
+		list.add("jumps");
+		list.add("over");
+		list.add("the");
+		list.add("lazy");
+		list.add("dog");
+		
+		String[] arr=list.stream().toArray(size -> new String[size]);
+		
+		System.out.println(Arrays.toString(arr));
+
+	}
+
+}
+
+output:
+
+[A, quick, brown, fox, jumps, over, the, lazy, dog]
+
+
+4.
+
+package java11;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class file {
+
+	public static void main(String[] args) {
+		
+		var path=("C:\\Users\\BINDBR\\Downloads\\StudentList.txt") ;
+
+		try {
+			String data = Files.readString(Path.of(path));
+			System.out.println(data);
+			System.out.println("==========");
+				String line;
+				int count =0;
+				
+				
+				String words[] = data.split(" ");	
+				count = count + words.length;
+				System.out.println("Total Name Count: " + count);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+
+}
+
+output:Total Name Count: 4
+
+6.
+
+package java11;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpClient.Version;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
+
+public class httpclass {
+
+	public static void main(String[] args) {
+      String uri="https://httpbin.org/get";
+      
+      HttpRequest req= HttpRequest.newBuilder().uri(URI.create(uri)).GET().version(Version.HTTP_2).build();
+      
+      HttpClient client=HttpClient.newBuilder().build();
+      
+      try {
+      HttpResponse<String> resp= client.send(req,BodyHandlers.ofString());
+      System.out.println(resp.statusCode());
+      System.out.println(resp.body());
+      
+      }
+      catch(Exception e){
+    	  System.out.println(e);
+      }
+
+	}
+
+}
+
+output:
+
+200
+{
+  "args": {}, 
+  "headers": {
+    "Host": "httpbin.org", 
+    "User-Agent": "Java-http-client/15.0.2", 
+    "X-Amzn-Trace-Id": "Root=1-61ec2960-3682b78d5504d751251a3a98"
+  }, 
+  "origin": "49.37.182.10", 
+  "url": "https://httpbin.org/get"
+}
+

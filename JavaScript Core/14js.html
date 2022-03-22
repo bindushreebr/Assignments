@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [];
+while(arr.length < 100){
+    var r = Math.floor(Math.random() * 100) + 1;
+    if(arr.indexOf(r) === -1) arr.push(r);
+}
+document.write("<br>");
+document.write(arr);
+document.write("<br>");
+document.write("Largest number among 100: ");
+document.write(Math.max(...arr));
+document.write("<br>");
+document.write("Smallest number among 100: ");
+document.write(Math.min(...arr));
+document.write("<br>");
+let sum=0;
+for(let i=1;i <= 100 ;i++)
+{
+    sum=sum+i;
+}
+document.write("Sum of number is: : ");
+document.write(Math.min(sum));
+document.write("<br>");
+let avg=sum/100;
+document.write("average of number is: : ");
+document.write(avg);
+document.write("<br>");
+
+    </script>
+
+</body>
+</html>

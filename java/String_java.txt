@@ -1,0 +1,116 @@
+1.
+
+
+public class string_class {
+
+	public static void main(String[] args) {
+		
+		String str="Hello World";
+		System.out.println(str.length());
+		
+		
+        String str1="Hello";       
+        String str2="How are you";        
+        System.out.println(str1.concat(" "+str2));
+        	
+        String str3="Java String Pool Refers To Collection Of Strings Which Are Store In Heap Memory";
+        System.out.println(str3.toLowerCase());
+        System.out.println(str3.toUpperCase());
+        
+        System.out.println(str3.replace('a', '$'));
+        //System.out.println(str3.replace('A', '$'));
+        
+        System.out.println(str3.contains("Collection"));
+        
+        String str4="Java String Pool Refers To Collection Of Strings Which Are Store In Heap Memory";
+	    System.out.println(str3==str4);
+	    System.out.println(str3.equals(str4));
+	
+	    String str5=new String("Java String Pool Refers To Collection Of Strings Which Are Store In Heap Memory");
+	    String str6=new String("Java String Pool Refers To Collection Of Strings Which Are Store In Heap Memory");
+	    System.out.println(str5==str6);
+	    System.out.println(str5.equals(str6));
+	
+	
+	
+	}
+
+}
+
+
+output:
+
+11
+Hello How are you
+java string pool refers to collection of strings which are store in heap memory
+JAVA STRING POOL REFERS TO COLLECTION OF STRINGS WHICH ARE STORE IN HEAP MEMORY
+J$v$ String Pool Refers To Collection Of Strings Which Are Store In He$p Memory
+true
+true
+true
+false
+true
+
+
+
+2.
+
+
+public class string_buffer {
+
+	public static void main(String[] args) {
+		StringBuffer str1=new StringBuffer("StringBuffer");
+		StringBuffer str2=new StringBuffer(" is a peer class of string");
+		StringBuffer str3=new StringBuffer(" that provides much of");
+		StringBuffer str4=new StringBuffer(" the functionality of the string.");
+		System.out.println(str1.append(str2).append(str3).append(str4));
+		
+	
+		StringBuffer str5=new StringBuffer("it is used to at the specified index position");
+		StringBuffer str6=new StringBuffer("insert text ");
+		System.out.println(str5.insert(14, str6));
+		
+		StringBuffer str7=new StringBuffer("This method returns the reversed object on which it was called");
+		System.out.println(str7.reverse());
+
+	}
+
+}
+
+output:
+
+StringBuffer is a peer class of string that provides much of the functionality of the string.
+it is used to insert text at the specified index position
+dellac saw ti hcihw no tcejbo desrever eht snruter dohtem sihT
+
+
+
+3.
+
+public class string_builder {
+
+	public static void main(String[] args) {
+		StringBuilder str1=new StringBuilder("StringBuffer");
+		StringBuilder str2=new StringBuilder(" is a peer class of string");
+		StringBuilder str3=new StringBuilder(" that provides much of");
+		StringBuilder str4=new StringBuilder(" the functionality of the string.");
+		System.out.println(str1.append(str2).append(str3).append(str4));
+		
+		
+		StringBuilder str5=new StringBuilder("it is used to at the specified index position");
+		StringBuilder str6=new StringBuilder("insert text ");
+		System.out.println(str5.insert(14, str6));
+		
+		
+		StringBuilder str7=new StringBuilder("This method returns the reversed object on which it was called");
+		System.out.println(str7.reverse());	
+
+	}
+
+}
+
+output:
+
+StringBuffer is a peer class of string that provides much of the functionality of the string.
+it is used to insert text at the specified index position
+dellac saw ti hcihw no tcejbo desrever eht snruter dohtem sihT

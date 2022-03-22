@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+    Js 1st and 2nd core question
+</title>
+    <script type="text/javascript">
+    var sum=0,n,i;
+    n=parseInt(prompt("Enter any number"));
+    /*while(n>0)
+    {
+        sum=sum+n;
+        n--;
+    }
+    alert("sum of n numbers:"+sum);*/
+   
+    
+    for( i=1;i<n;i++)
+    {
+     if(i%3==0){
+       sum+=i;
+    }
+    }  
+    for( i=1;i<n;i++){
+    if(i%5==0){
+    sum+=i;
+    }
+    } 
+    for( i=1;i<n;i++){
+    if(i%5==0 && i%3==0){
+    sum-=i;
+    }
+    } 
+
+     alert("sum of n numbers:"+sum);
+    </script>
+
+
+</html>

@@ -1,0 +1,473 @@
+1. Singleton class
+
+
+
+class Singleton {
+
+	    // Static variable reference of single_instance
+
+	    private static Singleton single_instance = null;
+	 
+	    // Declaring a variable of type String
+	    public String s;
+
+	    private Singleton()
+	    {
+	        s = "Hello I am a string part of Singleton class";
+	    }
+	    
+	    // Static method to create instance of Singleton class
+	    public static Singleton getInstance()
+	    {
+	        if (single_instance == null)
+	            single_instance = new Singleton();
+	 
+	        return single_instance;
+	    }
+	
+}
+
+
+
+class singleton_mainClass {
+
+	public static void main(String[] args) {
+		// Instantiating Singleton class with variable x
+        Singleton x = Singleton.getInstance();
+ 
+        // Instantiating Singleton class with variable y
+        Singleton y = Singleton.getInstance();
+ 
+        // Instantiating Singleton class with variable z
+        Singleton z = Singleton.getInstance();
+ 
+        // Printing the hash code for above variable as
+        // declared
+        System.out.println("Hashcode of x is "
+                           + x.hashCode());
+        System.out.println("Hashcode of y is "
+                           + y.hashCode());
+        System.out.println("Hashcode of z is "
+                           + z.hashCode());
+ 
+        // Condition check
+        if (x == y && y == z) {
+ 
+            // Print statement
+            System.out.println(
+                "Three objects point to the same memory location on the heap i.e, to the same object");
+        }
+ 
+        else {
+            // Print statement
+            System.out.println(
+                "Three objects DO NOT point to the same memory location on the heap");
+        }
+    }
+
+
+}
+
+
+
+output:
+
+
+Hashcode of x is 604107971
+Hashcode of y is 604107971
+Hashcode of z is 604107971
+Three objects point to the same memory location on the heap i.e, to the same object
+
+
+
+2.employee,manager and labour
+
+//employee
+package Employee_poly_override;
+
+public abstract  class employee {
+	int id;
+	String name;
+	
+	
+	public employee(int id,String name) {
+		 this.id=id;
+		 this.name=name;
+		
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+ public abstract double earning();
+ 
+}
+
+
+//manager
+
+package Employee_poly_override;
+
+public class manager extends employee {
+
+	public static final double BONUS_INCENTIVES=5;
+	private double actualsalary;
+	
+	public manager(int id, String name,double salary) {
+		super(id, name);
+		setActualsalary(salary);
+	}
+	
+	public void setActualsalary(double salary) {
+		this.actualsalary = salary*BONUS_INCENTIVES;
+	}
+
+
+	public double getActualsalary() {
+		return actualsalary;
+	}
+
+
+
+
+
+	@Override
+	public double earning() {
+		
+		return getActualsalary();
+	}
+
+		
+	}
+
+
+//labour
+
+package Employee_poly_override;
+
+public class labour extends employee{
+
+	
+	private double salary; //per day salary
+	private double hours; // extra amount earned after regular day
+	
+	public labour(int id, String name,double salary,double hours) {
+		super(id, name);
+		setSalary(salary);
+		setHours(hours);
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	public double getHours() {
+		return hours;
+	}
+
+	public void setHours(double hoursworked) {
+		if((hoursworked >=0.0)&&(hoursworked <=12.0))
+		
+			hours=hoursworked;
+		
+	}
+
+	@Override
+	public double earning() {
+		if(getHours()<=8.0) {
+	        return getSalary();
+		}
+		 else {                                                            
+	       return  (( getHours() - 8.0 ) * getSalary() *  5 );
+	}
+	}
+
+	
+}
+
+
+
+main_class
+
+
+package Employee_poly_override;
+
+public class main_class {
+
+	public static void main(String[] args) {
+		
+		manager m1=new manager(1, "bindu", 1500);
+		manager m2=new manager(2,"shree",2000);
+		
+		labour l1=new labour(11,"thanu", 500, 10.0);
+		labour l2=new labour(12,"shreyan", 800, 8.0);
+		
+         System.out.println("Name of Employee:" +m1.getName()+"---"+"Salary:"
+                  +m1.getActualsalary());
+         
+         System.out.println("Name of Employee:" +m2.getName()+"---"+"Salary:"
+                       +m2.getActualsalary());
+         
+         
+         System.out.println("Name of Employee:" +l1.getName()+"---"+"Salary:"+
+         l1.getSalary());
+         
+         System.out.println("Name of Employee:" +l2.getName()+"---"+"Salary:"+
+                 l2.getSalary());
+         
+         System.out.println("Total cash in Bank:"+(m1.earning()+m2.earning()+l1.earning()+l2.earning()));
+	}
+
+}
+
+
+output:
+
+Name of Employee:shree---Salary:10000.0
+Name of Employee:thanu---Salary:500.0
+Name of Employee:shreyan---Salary:800.0
+Total cash in Bank:23300.0
+
+
+3.bank
+
+
+package bank_poly;
+
+public abstract class bank {
+	int accountid;
+	String name;
+	
+	public bank(int accountid, String name) {
+		this.accountid = accountid;
+		this.name = name;
+	}
+
+	public int getAccountid() {
+		return accountid;
+	}
+
+	public void setAccountid(int accountid) {
+		this.accountid = accountid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public abstract  double cash();
+	
+ 
+}
+
+
+package bank_poly;
+
+public class current extends bank {
+
+	private double credit_cash;
+	
+	public current(int accountid, String name,double credit_cash) {
+		super(accountid, name);
+		setCredit_cash(credit_cash);
+		
+	}
+	
+	public double getCredit_cash() {
+		return credit_cash;
+	}
+
+	public void setCredit_cash(double credit_cash) {
+		this.credit_cash = credit_cash;
+	}
+
+
+
+	@Override
+	public double cash() {
+		return getCredit_cash();
+	}
+
+	
+}
+
+
+package bank_poly;
+
+public class saving extends bank{
+
+	private double fixed_depo;
+	private double saving_amount;
+	
+	public saving(int accountid, String name,double fixed_depo,double saving_amount) {
+		super(accountid, name);
+		setFixed_depo(fixed_depo);
+		setSaving_amount(saving_amount);
+	}
+	
+	
+	public double getSaving_amount() {
+		return saving_amount;
+	}
+
+
+	public void setSaving_amount(double savingAmount) {
+		this.saving_amount = savingAmount;
+	}
+
+
+	public double getFixed_depo() {
+		return fixed_depo;
+	}
+
+	public void setFixed_depo(double fixedamount) {
+		this.fixed_depo = fixedamount;
+	}
+
+
+
+	@Override
+	public double cash() {
+		return getSaving_amount()+getFixed_depo();
+	}
+
+	
+}
+
+
+
+package bank_poly;
+
+public class main_class {
+
+	public static void main(String[] args) {
+		saving s1=new saving(123,"bindu", 15000,800);
+		saving s2=new saving(145,"thanu", 25000,1000);
+		
+		current c1=new current(127,"sindu",6750);
+		
+		 System.out.println("Name of Employee:" +s1.getName()+"---"+"Saving amount:"
+                 +s1.getSaving_amount()+"---"+"fixed deposite amount:"
+                         +s2.getFixed_depo()+"---"+"total amount:"+s1.cash());
+        
+        System.out.println("Name of Employee:" +s2.getName()+"---"+"Saving amount:"
+                      +s2.getSaving_amount()+"---"+"fixed deposite amount:"
+                              +s2.getFixed_depo()+"---"+"total amount:"+s2.cash());
+        
+        
+        System.out.println("Name of Employee:" +c1.getName()+"---"+"credit amount:"+
+        c1.getCredit_cash()+"---"+"total amount:"+c1.cash());
+       
+        System.out.println("Total cash in Bank:"+(s1.cash()+s2.cash()+c1.cash()));
+        
+	}
+
+}
+
+output:
+
+Name of Employee:bindu---Saving amount:800.0---fixed deposite amount:25000.0---total amount:15800.0
+Name of Employee:thanu---Saving amount:1000.0---fixed deposite amount:25000.0---total amount:26000.0
+Name of Employee:sindu---credit amount:6750.0---total amount:6750.0
+Total cash in Bank:48550.0
+
+
+
+4. Analysing Abstract class
+
+
+5.shape
+
+package Abstract_class_shape;
+
+public class cube extends shape{
+
+	@Override
+	void draw() {
+		System.out.println("Hi this is cube drawing ");
+	}
+
+}
+
+
+package Abstract_class_shape;
+
+public class line  extends shape{
+
+	@Override
+	void draw() {
+		System.out.println("Hi this is line drawing ");
+	}
+
+
+}
+
+
+package Abstract_class_shape;
+
+public class rectangle extends shape{
+
+	@Override
+	void draw() {
+		System.out.println("Hi this is rectangle drawing ");
+		
+	}
+
+}
+
+
+package Abstract_class_shape;
+
+abstract class shape{
+
+	abstract void draw();
+
+}
+
+public class shape_main {
+
+	public static void main(String[] args) {
+		shape l1=new line();
+		l1.draw();
+		shape r1=new rectangle();
+		r1.draw();
+		shape c1=new cube();
+		c1.draw();
+				
+		
+	}
+
+}
+
+
+output:
+
+Hi this is line drawing 
+Hi this is rectangle drawing 
+Hi this is cube drawing 
+

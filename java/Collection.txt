@@ -1,0 +1,398 @@
+1.
+package collection;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
+
+
+class contact implements Comparable<contact>{
+	
+	public enum Gender { M,F }
+	long PhoneNumber;
+	String Name;
+	String Email;
+    Gender gender;
+    
+	public contact(long phoneNumber, String name, String email, Gender gender) {
+		super();
+		this.PhoneNumber = phoneNumber;
+		this.Name = name;
+		this.Email = email;
+		this.gender = gender;
+	}
+
+	
+	public long getPhoneNumber() {
+		return PhoneNumber;
+	}
+
+	public void setPhoneNumber(long phoneNumber) {
+		PhoneNumber = phoneNumber;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "contact [PhoneNumber=" + PhoneNumber + ", Name=" + Name + ", Email=" + Email + ", gender=" + gender
+				+ "]";
+	}
+
+
+	@Override
+	public int compareTo(contact c) {
+		
+		return PhoneNumber>c.PhoneNumber?1:-1;
+	}
+	
+
+}
+
+public class Contact_main {
+
+	public static void main(String[] args) {
+		
+		List<contact> list=new ArrayList<contact>();
+		
+		contact c1=new contact(6845138411L,"sujatha","suji.98@gmail.com",contact.Gender.F);
+		contact c2=new contact(8972752011L,"shreyan","shreyan.76@gmail.com",contact.Gender.M);
+		contact c3=new contact(5108718329L,"thanush","thanush@gmail.com",contact.Gender.M);
+		contact c4=new contact(9729202918L,"bindu","bindugowda@gmail.com",contact.Gender.F);
+		
+		list.add(c1);
+		list.add(c2);
+		list.add(c3);
+		list.add(c4);
+		
+		  
+	   /*EnumMap<gender,contact> map=new EnumMap<gender,contact>(gender.class);
+	   map.put(gender.female, c1);
+	   map.put(gender.male, c2);
+	   map.put(gender.male, c3);
+	   map.put(gender.female, c4);
+	   
+	   Set<Entry<gender,contact>> entryset=map.entrySet();
+	   
+	   for(Entry<gender,contact> entry:entryset) {
+		   System.out.println(entry.getKey()+"----"+entry.getValue());
+	   }*/
+
+		System.out.println("sorted list of contact in descending order");
+		
+		Collections.sort(list,Collections.reverseOrder());
+	
+	    for(contact c:list)
+	    {
+		   System.out.println(c);
+	    }
+
+	   System.out.println(" mapped set of list");
+	   
+		Map<Long,contact> map1=new TreeMap<Long,contact>();
+		map1.put(984138411L,c1);
+		map1.put(786544490L,c2);
+		map1.put(845366799L,c3);
+		map1.put(987654312L,c4);
+		Set<Entry<Long,contact>> entryset=map1.entrySet();
+		
+		 System.out.println("Key element");
+		   for(Entry<Long,contact> entry:entryset)
+		   {
+			   System.out.println(entry.getKey());
+		   }
+		  System.out.println("Value element");
+		  for(Entry<Long,contact> entry:entryset)
+		   {
+			  System.out.println(entry.getValue());
+		   }
+		  
+		  System.out.println("Key-Value element");
+		  for(Entry<Long,contact> entry:entryset)
+		   {
+			  System.out.println(entry.getKey()+"----"+entry.getValue());
+		   }
+
+	}
+
+}
+
+
+
+
+output:
+
+sorted list of contact in descending order
+contact [PhoneNumber=9729202918, Name=bindu, Email=bindugowda@gmail.com, gender=F]
+contact [PhoneNumber=8972752011, Name=shreyan, Email=shreyan.76@gmail.com, gender=M]
+contact [PhoneNumber=6845138411, Name=sujatha, Email=suji.98@gmail.com, gender=F]
+contact [PhoneNumber=5108718329, Name=thanush, Email=thanush@gmail.com, gender=M]
+ mapped set of list
+Key element
+786544490
+845366799
+984138411
+987654312
+Value element
+contact [PhoneNumber=8972752011, Name=shreyan, Email=shreyan.76@gmail.com, gender=M]
+contact [PhoneNumber=5108718329, Name=thanush, Email=thanush@gmail.com, gender=M]
+contact [PhoneNumber=6845138411, Name=sujatha, Email=suji.98@gmail.com, gender=F]
+contact [PhoneNumber=9729202918, Name=bindu, Email=bindugowda@gmail.com, gender=F]
+Key-Value element
+786544490----contact [PhoneNumber=8972752011, Name=shreyan, Email=shreyan.76@gmail.com, gender=M]
+845366799----contact [PhoneNumber=5108718329, Name=thanush, Email=thanush@gmail.com, gender=M]
+984138411----contact [PhoneNumber=6845138411, Name=sujatha, Email=suji.98@gmail.com, gender=F]
+987654312----contact [PhoneNumber=9729202918, Name=bindu, Email=bindugowda@gmail.com, gender=F]
+
+
+
+2.
+
+
+package collection;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class application {
+
+	public static void main(String[] args) {
+		
+		Set<String> s1=new TreeSet<String>();
+		
+		s1.add("iphone");
+		s1.add("vivo");
+		s1.add("oppo");
+		s1.add("samsung");
+		s1.add("oneplus");
+		s1.add("moto");
+		s1.add("xiaomi");
+		s1.add("nokia");
+		s1.add("honor");
+		s1.add("iphone");
+		s1.add("vivo");
+		
+		System.out.println(s1);
+
+	}
+
+}
+
+output:
+
+[honor, iphone, moto, nokia, oneplus, oppo, samsung, vivo, xiaomi]
+
+
+3.
+
+package collection;
+
+import java.util.Comparator;
+
+public class MyNameComp implements Comparator<employee> {
+
+	@Override
+	public int compare(employee e1, employee e2) {
+	
+		return e1.getName().compareTo(e2.getName()); 
+		
+	}
+
+}
+
+
+
+
+package collection;
+
+import java.util.Comparator;
+import java.util.TreeSet;
+
+
+class employee {
+	private int id;
+	private String name,department;
+	private double salary;
+	
+	public employee(int id, String name, String department, double salary) {
+		this.id = id;
+		this.name = name;
+		this.department = department;
+		this.salary = salary;
+	}
+
+	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getDepartment() {
+		return department;
+	}
+
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+
+	public double getSalary() {
+		return salary;
+	}
+
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+
+	@Override
+	public String toString() {
+		return "employee [id=" + id + ", name=" + name + ", department=" + department + ", salary=" + salary + "]";
+	}
+	
+}
+public class employee_main {
+
+	public static void main(String[] args) {
+	
+		TreeSet<employee> set=new TreeSet<employee>(new MyNameComp());
+		
+		
+		set.add(new employee(1,"bindushree","ec",45000.0));
+		set.add(new employee(2,"sindu","cs",30000.0));
+		set.add(new employee(3,"thanu","is",35000.0));
+		set.add(new employee(4,"shreyan","is",45000.0));
+		set.add(new employee(5,"anusha","cs",50000.0));
+		set.add(new employee(6,"lahari","cs",24500.0));
+		set.add(new employee(7,"krupa","ec",15000.0));
+		set.add(new employee(8,"rohan","eee",36500.0));
+		set.add(new employee(9,"vennela","eee",28500.0));
+		set.add(new employee(10,"vikrant","eee",36900.0));
+
+		for(employee e:set)
+		  System.out.println(e); 
+
+    }
+}
+
+
+
+output:
+
+
+employee [id=5, name=anusha, department=cs, salary=50000.0]
+employee [id=1, name=bindushree, department=ec, salary=45000.0]
+employee [id=7, name=krupa, department=ec, salary=15000.0]
+employee [id=6, name=lahari, department=cs, salary=24500.0]
+employee [id=8, name=rohan, department=eee, salary=36500.0]
+employee [id=4, name=shreyan, department=is, salary=45000.0]
+employee [id=2, name=sindu, department=cs, salary=30000.0]
+employee [id=3, name=thanu, department=is, salary=35000.0]
+employee [id=9, name=vennela, department=eee, salary=28500.0]
+employee [id=10, name=vikrant, department=eee, salary=36900.0]
+
+
+4.
+
+package collection;
+
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
+public class year {
+
+	public static void main(String[] args) {
+		
+		List<LocalDate> l1=new LinkedList<LocalDate>();
+		
+		LocalDate date1 = LocalDate.of(2000, 12, 23);
+		LocalDate date2 = LocalDate.of(2001, 12, 23);
+		LocalDate date3 = LocalDate.of(2021, 1, 20);
+		
+		l1.add(date1);
+		l1.add(date2);
+		l1.add(date3);	
+
+		System.out.println(l1);
+		
+		for(LocalDate e:l1) {
+			System.out.println(e);
+			
+			if(e.isLeapYear()) {
+				System.out.println("Your Date of Birth is "+e+" is a leap year");
+			}
+			else {
+				System.out.println("Your Date of Birth is "+e+" is not a leap year");
+			}
+			
+
+		}
+		
+	
+		
+	}
+
+}
+
+
+
+output:
+
+
+[2000-12-23, 2001-12-23, 2021-01-20]
+2000-12-23
+Your Date of Birth is 2000-12-23 is a leap year
+2001-12-23
+Your Date of Birth is 2001-12-23 is not a leap year
+2021-01-20
+Your Date of Birth is 2021-01-20 is not a leap year

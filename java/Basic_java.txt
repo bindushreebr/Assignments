@@ -1,0 +1,456 @@
+1.Armstrong number
+
+import java.util.Scanner;
+
+public class Armstrong_num {
+
+	public static void main(String[] args) {
+		int x,n,rem,sum=0;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the value:");
+		x=sc.nextInt();
+		n=x;
+        while(n!=0) {
+			rem=n%10;
+			sum=sum+(rem*rem*rem);
+		    n=n/10;	
+		}
+		System.out.println("value:"+sum);
+		if(sum==x) {
+			System.out.println("It is a Armstrong number");
+		}
+		else {
+			System.out.println("It is not a Armstrong number");
+		}
+
+	}
+
+}
+
+
+output:
+
+enter the value:
+153
+value:153
+It is a Armstrong number
+
+
+2. 
+
+
+public class Armstrong_n_num {
+
+	public static void main(String[] args) {
+
+		int n,b,sum=0;
+		System.out.println("Armstrong number fromm 100 to 999");
+		for(int i=100;i<=999;i++) 
+		{
+			n=i;
+			 while(n>0) 
+			 {
+					b=n%10;
+					sum=sum+(b*b*b);
+				    n=n/10;	
+				}
+			 if(sum == i) {
+				 System.out.println(i+" ");
+			 }
+			 sum=0;
+		}
+		
+	
+	}
+
+}
+
+output:
+
+Armstrong number fromm 100 to 999
+153 
+370 
+371 
+407 
+
+
+5.
+
+import java.util.Scanner;
+
+public class income_tax {
+
+	public static void main(String[] args) {
+		double CTC,tax,amount;
+
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter ur CTC amount:");
+		CTC=sc.nextDouble();
+		if(CTC<=180000) {
+			tax=0;
+			amount=0;
+			System.out.println("Amount payable is"+amount);
+		}
+		else if((CTC>181001)&&(CTC<=300000)){
+			tax=10;
+			amount=(CTC*tax)/100;
+			System.out.println("Amount payable is"+amount);
+		}
+		else if((CTC>300001)&&(CTC<=500000)){
+			tax=20;
+			amount=(CTC*tax)/100;
+			System.out.println("Amount payable is"+amount);
+		}
+		else if((CTC>500001)&&(CTC<=1000000)){
+			tax=30;
+			amount=(CTC*tax)/100;
+			System.out.println("Amount payable is"+amount);
+		}
+		
+
+	}
+
+}
+
+
+output:
+
+Enter ur CTC amount:
+250000
+Amount payable is25000.0
+
+Enter ur CTC amount:
+450000
+Amount payable is90000.0
+
+Enter ur CTC amount:
+800000
+Amount payable is240000.0
+
+4.
+
+import java.util.Scanner;
+
+public class marks_grade {
+
+	public static void main(String[] args) {
+		int sub1,sub2,sub3;
+
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the marks of subject 1:");
+		sub1=sc.nextInt();
+		System.out.println("Enter the marks of subject 2:");
+		sub2=sc.nextInt();
+		System.out.println("Enter the marks of subject 3:");
+		sub3=sc.nextInt();		
+		
+		if((sub1 > 60)&&(sub2 > 60)&&(sub3 > 60)) {
+			System.out.println("passed");
+		}
+		else if((sub1 > 60)&&(sub2 > 60)) {
+			System.out.println("promoted");
+		}
+		else if((sub1 > 60)&&(sub3 > 60)){
+			System.out.println("promoted");
+		}
+		else if((sub2 > 60)&&(sub3 > 60)){
+			System.out.println("promoted");
+		}
+		else if((sub1 > 60)&&(sub2 <60) &&(sub3 < 60)){
+			System.out.println("failed");
+		}
+		else if((sub2 > 60)&&(sub1 <60)&&(sub3 <60)){
+			System.out.println("failed");
+		}
+		else if((sub3 > 60)&&(sub1 <60)&&(sub2 <60)){
+			System.out.println("failed");
+		}
+		else if((sub1 < 60)&&(sub2 <60)&&(sub3 <60)){
+			System.out.println("failed");
+		}
+		
+		
+
+	}
+
+}
+
+
+output:
+
+Enter the marks of subject 1:
+80
+Enter the marks of subject 2:
+90
+Enter the marks of subject 3:
+99
+passed
+
+
+Enter the marks of subject 1:
+78
+Enter the marks of subject 2:
+90
+Enter the marks of subject 3:
+45
+promoted
+
+Enter the marks of subject 1:
+90
+Enter the marks of subject 2:
+34
+Enter the marks of subject 3:
+89
+promoted
+
+Enter the marks of subject 1:
+23
+Enter the marks of subject 2:
+80
+Enter the marks of subject 3:
+99
+promoted
+
+Enter the marks of subject 1:
+89
+Enter the marks of subject 2:
+55
+Enter the marks of subject 3:
+45
+failed
+
+Enter the marks of subject 1:
+45
+Enter the marks of subject 2:
+90
+Enter the marks of subject 3:
+33
+failed
+
+Enter the marks of subject 1:
+23
+Enter the marks of subject 2:
+45
+Enter the marks of subject 3:
+98
+failed
+
+Enter the marks of subject 1:
+45
+Enter the marks of subject 2:
+34
+Enter the marks of subject 3:
+54
+failed
+
+3.
+
+import java.util.Scanner;
+
+public class simple_compound {
+
+	public static void main(String[] args) {
+		float p,r,SI,n,t;
+		double CMP;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the principle value:");
+		p=sc.nextFloat();
+		System.out.println("enter the rate of intrest:");
+		r=sc.nextFloat();
+		System.out.println("enter the time:");
+		t=sc.nextFloat();
+		SI=(p*t*r)/100;
+		System.out.println("simple interset is:"+SI);
+		System.out.println("enter the intrest applied per time period:");
+		n=sc.nextFloat();
+		double x=Math.pow((1+(r/n)),(n*t));
+		CMP=p*x;
+		System.out.println("compound interset is:"+CMP);
+	}
+
+}
+
+
+output:
+
+enter the principle value:
+45000
+enter the rate of intrest:
+3
+enter the time:
+5
+simple interset is:6750.0
+enter the intrest applied per time period:
+1
+compound interset is:4.608E7
+
+
+
+6.
+
+
+import java.util.Scanner;
+
+public class login {
+
+	public static void main(String[] args) {
+		String loginName,password;
+		int track=0,count=0,x;
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the login name:");
+		loginName=sc.nextLine();
+		System.out.println("Enter the password:");
+		password=sc.nextLine();
+		
+		while(track<3 && count==0) {
+		if((loginName.equals("bindu"))&&(password.equals("123"))) 
+		{
+			System.out.println("Welcome "+loginName);
+			count=1;
+		}
+		else {
+			track+=1;
+			x=3-track;
+			System.out.println("Retry, u have "+x+" attempts");
+
+		if(x==0) {
+			System.out.println("Contact Admin");
+		}
+		}
+		
+		
+	}
+		
+
+	}
+
+}
+
+
+
+
+output:
+
+Enter the login name:
+bindu
+Enter the password:
+123
+Welcome bindu
+
+7.
+
+import java.util.Scanner;
+
+public class Array_search {
+
+	public static void main(String[] args) {
+		int n;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the value:");
+		n=sc.nextInt();
+		int[] array=new int[]{5,12,14,6,78,19,1,23,26,35,37,7,52,86,47};
+        
+		for(int i=0;i<array.length;i++) {
+			if(array[i]==n) {
+				System.out.println("The search element is found at:"+i);
+			}
+		}
+		
+	}
+
+}
+
+
+output:
+
+enter the value:
+19
+The search element is found at:5
+
+8.
+
+import java.util.Scanner;
+
+public class Array_sort {
+
+	public static void main(String[] args) {
+		
+		int[] array=new int[]{5,12,14,6,78,19,1,23,26,35,37,7,52,86,47};
+        int i,j,temp,n;
+        n=array.length;
+		for(i=0;i<n-1;i++) {
+			for(j=0;j<n-i-1;j++) {
+			if(array[j] > array[j+1]) 
+			{
+				temp=array[j];
+				array[j] = array[j+1];
+				array[j+1]=temp;
+			}
+	      }
+		}
+		for(i=0;i<n-1;i++) {
+		System.out.println("Sorted value are:"+array[i]);
+		}
+
+	}
+
+}
+
+output:
+
+Sorted value are:1
+Sorted value are:5
+Sorted value are:6
+Sorted value are:7
+Sorted value are:12
+Sorted value are:14
+Sorted value are:19
+Sorted value are:23
+Sorted value are:26
+Sorted value are:35
+Sorted value are:37
+Sorted value are:47
+Sorted value are:52
+Sorted value are:78
+
+
+
+9.
+
+import java.util.Scanner;
+
+public class array_sub {
+	public static void main(String[] args) {
+		float total,average;
+		int[] student1=new int[] {78,89,90};
+		int[] student2=new int[] {87,99,87};
+		int[] student3=new int[] {98,89,67};
+		int i=0;
+	       total=student1[i]+student1[i+1]+student1[i+2];
+	       average=(total/3);
+	       System.out.println("Total  score of student1:"+total);
+	       System.out.println("Average score of student1:"+average);
+		
+	       total=student2[i]+student2[i+1]+student2[i+2];
+	       average=(total/3);
+	       System.out.println("Total  score of student2:"+total);
+	       System.out.println("Average score of student2:"+average);
+	       
+	       total=student3[i]+student3[i+1]+student3[i+2];
+	       average=(total/3);
+	       System.out.println("Total  score of student3:"+total);
+	       System.out.println("Average score of student3:"+average);
+
+	}
+}
+
+output:
+
+Total  score of student1:257.0
+Average score of student1:85.666664
+Total  score of student2:273.0
+Average score of student2:91.0
+Total  score of student3:254.0
+Average score of student3:84.666664
+
